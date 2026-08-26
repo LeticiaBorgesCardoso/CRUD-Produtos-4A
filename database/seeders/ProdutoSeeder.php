@@ -17,18 +17,21 @@ class ProdutoSeeder extends Seeder
             'nome' => 'Notebook',
             'preco' => 6000.50,
             'quantidade' => 12,
+            'categoria_id' => 1,
         ]);
 
         Produto::create([
             'nome' => 'Pizza',
             'preco' => 47.50,
             'quantidade' => 25,
+            'categoria_id' => 2,
         ]);
 
         Produto::create([
             'nome' => 'Lajota',
             'preco' => 21.90,
             'quantidade' => 11,
+            'categoria_id' => 2,
         ]);
 
 
