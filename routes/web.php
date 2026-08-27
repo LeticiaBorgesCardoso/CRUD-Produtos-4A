@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', [ProdutoController::class, 'index']);
+// rotas do CRUD
+Route::resource('/produtos', ProdutoController::class);

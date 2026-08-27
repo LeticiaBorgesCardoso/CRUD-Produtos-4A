@@ -8,10 +8,15 @@
 </head>
 <body>
 
+    @if (session('success'))
+        <p style="color:green;">{{ session('success') }}</p>
+    @endif
+
+    <a href="{{ route('produtos.create') }}"> Criar Produto</a>
+
     @foreach ( $produtos as $produto )
         <p>Nome: {{ $produto->nome }}</p>
-        <p>Preço: R$ {{ $produto->preco }}</p>
-        <p>Categoria: {{ $produto->categoria->nome }}</p>
+        <a href="{{ route('produtos.show', $produto->id) }}">Mostrar Detalhes</a>
         <hr>
     @endforeach
 
