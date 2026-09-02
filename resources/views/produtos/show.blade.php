@@ -12,5 +12,6 @@
     <p>Quantidade: {{ $produto->quantidade }}</p>
     <p>Categoria: {{ $produto->categoria->nome }}</p>
     
+    <a href="{{ route('produtos.edit', $produto) }}">Editar Informações</a>
 </body>
 </html>

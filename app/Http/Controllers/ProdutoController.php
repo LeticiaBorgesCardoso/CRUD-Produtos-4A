@@ -38,4 +38,22 @@ class ProdutoController extends Controller
             ->route('produtos.index')
             ->with('success', 'Produto criado com sucesso!');
     }
+
+    public function edit(Produto $produto)
+    {
+        $categorias = Categoria::all();
+
+        return view('produtos.edit', compact('produto', 'categorias'));  
+    }
+
+    public function update(ProdutoRequest $request, Produto $produto)
+    {
+        $dados = $request->validated();
+        $produto->update($dados);
+
+        return redirect()
+            ->route('produtos.index')
+            ->with('success', 'Produto atualizado com sucesso!');
+    }
+
 }
