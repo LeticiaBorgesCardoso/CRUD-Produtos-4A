@@ -13,5 +13,12 @@
     <p>Categoria: {{ $produto->categoria->nome }}</p>
     
     <a href="{{ route('produtos.edit', $produto) }}">Editar Informações</a>
+
+    <form action="{{ route('produtos.destroy', $produto) }}" method="POST">
+        @csrf
+        @method('DELETE')
+
+        <x-danger-button type="submit">Deletar Produto</x-danger-button>
+    </form>
 </body>
 </html>
