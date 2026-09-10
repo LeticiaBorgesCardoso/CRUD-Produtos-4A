@@ -6,6 +6,7 @@ use App\Http\Requests\ProdutoRequest;
 use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProdutoController extends Controller
 {
@@ -21,6 +22,9 @@ class ProdutoController extends Controller
 
     public function create() 
     {
+
+        Gate::authorize('create', Produto::class);
+
         $produto = new Produto();
         $categorias = Categoria::all();
 
@@ -30,9 +34,13 @@ class ProdutoController extends Controller
     public function store(ProdutoRequest $request)
     {
 
+        Gate::authorize('create', Produto::class);
+
         $dados = $request->validated();
 
-        Produto::create($dados);
+        $produto = new Produto($dados);
+        $produto->user_id = auth()->id();
+        $produto->save();
 
         return redirect()
             ->route('produtos.index')
@@ -41,6 +49,9 @@ class ProdutoController extends Controller
 
     public function edit(Produto $produto)
     {
+        Gate::authorize('update', $produto);
+
+
         $categorias = Categoria::all();
 
         return view('produtos.edit', compact('produto', 'categorias'));  
@@ -48,6 +59,8 @@ class ProdutoController extends Controller
 
     public function update(ProdutoRequest $request, Produto $produto)
     {
+        Gate::authorize('update', $produto);
+
         $dados = $request->validated();
         $produto->update($dados);
 
@@ -58,6 +71,9 @@ class ProdutoController extends Controller
 
     public function destroy(Produto $produto)
     {
+
+        Gate::authorize('delete', $produto);
+
         $produto->delete();
         return redirect()
             ->route('produtos.index')

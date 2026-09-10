@@ -18,6 +18,7 @@ class ProdutoSeeder extends Seeder
             'preco' => 6000.50,
             'quantidade' => 12,
             'categoria_id' => 1,
+            'user_id' => 1,
         ]);
 
         Produto::create([
@@ -25,6 +26,7 @@ class ProdutoSeeder extends Seeder
             'preco' => 47.50,
             'quantidade' => 25,
             'categoria_id' => 2,
+            'user_id' => 1,
         ]);
 
         Produto::create([
@@ -32,6 +34,7 @@ class ProdutoSeeder extends Seeder
             'preco' => 21.90,
             'quantidade' => 11,
             'categoria_id' => 2,
+            'user_id' => 2,
         ]);
 
 

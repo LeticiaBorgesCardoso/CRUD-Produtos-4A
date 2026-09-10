@@ -15,11 +15,14 @@
                         <p style="color:green;">{{ session('success') }}</p>
                     @endif
 
-                    <a href="{{ route('produtos.create') }}"> 
-                        <x-primary-button>
-                        Criar Produto
-                        </x-primary-button> 
-                    </a>
+                    @can('create', App\Models\Produto::class)
+                        <a href="{{ route('produtos.create') }}"> 
+                            <x-primary-button>
+                            Criar Produto
+                            </x-primary-button> 
+                        </a>
+                    @endcan
+                    
 
                     @foreach ( $produtos as $produto )
                         <p>Nome: {{ $produto->nome }}</p>
