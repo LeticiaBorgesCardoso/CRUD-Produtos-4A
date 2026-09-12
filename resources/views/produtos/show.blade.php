@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mostrando: {{ $produto->nome }}</title>
+    <title>Detalhes: {{ $produto->nome }}</title>
 </head>
 <body>
-    <h3>Nome: {{ $produto->nome }}</h3>
-    <p>Preço: R$ {{ $produto->preco }}</p>
-    <p>Quantidade: {{ $produto->quantidade }}</p>
-    <p>Categoria: {{ $produto->categoria->nome }}</p>
-    
-    @can('update', $produto)
-        <a href="{{ route('produtos.edit', $produto) }}">Editar Informações</a>
-    @endcan
-    
-    @can('delete', $produto)
-        <form action="{{ route('produtos.destroy', $produto) }}" method="POST">
-        @csrf
-        @method('DELETE')
+    <h2>Item: {{ $produto->nome }}</h2>
+    <p><strong>Valor:</strong> R$ {{ $produto->preco }}</p>
+    <p><strong>Estoque disponível:</strong> {{ $produto->quantidade }}</p>
+    <p><strong>Setor / Categoria:</strong> {{ $produto->categoria->nome }}</p>
 
-        <x-danger-button type="submit">Deletar Produto</x-danger-button>
-    </form>
+    @can('update', $produto)
+        <a href="{{ route('produtos.edit', $produto) }}">
+            <x-secondary-button>
+                Editar Dados
+            </x-secondary-button>
+        </a>
     @endcan
-    
+
+    @can('delete', $produto)
+        <form action="{{ route('produtos.destroy', $produto) }}" method="POST" style="margin-top: 10px;">
+            @csrf
+            @method('DELETE')
+
+            <x-danger-button type="submit">Excluir Registro</x-danger-button>
+        </form>
+    @endcan
+
 </body>
 </html>
